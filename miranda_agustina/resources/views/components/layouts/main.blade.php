@@ -26,11 +26,36 @@
                     >
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="main-menu">
-                        <ul class="navbar-nav">
+                    <div class="collapse navbar-collapse" id="menu">
+                        <ul class="navbar-nav me-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('home') }}">Inicio</a>
-                            </li>
+                                <a class="nav-link" href="{{ route('home')}}">Inicio</a>
+                            </li>    
+                        </ul>
+
+                        <ul class="navbar-nav">
+                            @guest
+                                <li class="nav-item"> 
+                                    <a class="nav-link" href="{{route('auth.login.form')}}">Ingresar</a>
+                                </li>    
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{route('auth.register.form')}}">Registrate</a>
+                                </li>
+                            @endguest
+
+                            @auth
+                                <li class="nav-item">
+                                    <span class="navbar-text">Hola, {{ auth()->user()->name}}</span>
+                                </li>
+                                <li class="nav-item">
+                                    <form action="{{route('auth.logout')}}" method="post">
+                                        @csrf
+                                        <button type="submit" class="nav-link btn btn-link">Cerrar sesión</button>
+                                    
+                                    </form>
+                                </li>
+                            @endauth
+                                        
                         </ul>
                     </div>
                 </div>
