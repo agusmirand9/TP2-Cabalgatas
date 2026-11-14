@@ -53,13 +53,13 @@ class User extends Authenticatable
      */
     public function bookings(): HasMany
     {
-        returns $this->hasMany(booking::class,'user_fk');
+        return $this->hasMany(Booking::class,'user_fk');
     }
 
     /**
      * si el usuario es admin
      */
-    public function isAdmin():boll
+    public function isAdmin():bool
     {
         return $this->role->name === 'admin';
     }
