@@ -26,14 +26,14 @@
                     >
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="menu">
+                    <div class="collapse navbar-collapse" id="main-menu">
                         <ul class="navbar-nav me-auto">
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('home')}}">Inicio</a>
                             </li>    
                         </ul>
 
-                        <ul class="navbar-nav">
+                        <ul class="navbar-nav align-items-lg-center">
                             @guest
                                 <li class="nav-item"> 
                                     <a class="nav-link" href="{{route('auth.login.form')}}">Ingresar</a>
@@ -50,7 +50,7 @@
                                 <li class="nav-item">
                                     <form action="{{route('auth.logout')}}" method="post">
                                         @csrf
-                                        <button type="submit" class="nav-link btn btn-link">Cerrar sesión</button>
+                                        <button type="submit" class="nav-link">Cerrar sesión</button>
                                     
                                     </form>
                                 </li>
