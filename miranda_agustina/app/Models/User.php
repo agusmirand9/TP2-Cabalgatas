@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 #[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
@@ -28,5 +30,37 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * rol asignado a un usuario
+     */
+    public function role(): BelongsTo
+    {
+        return $this->belongsTo(Role::class, 'role_fk', 'role_id');
+    }
+
+    /**
+     * post del usuario
+     */
+    public function post(): HasMany
+    {
+        return $this->hasMany(Post::class, 'user_fk');
+    }
+
+    /**
+     * reservas del usuario
+     */
+    public function bookings(): HasMany
+    {
+        returns $this->hasMany(booking::class,'user_fk');
+    }
+
+    /**
+     * si el usuario es admin
+     */
+    public function isAdmin():boll
+    {
+        return $this->role->name === 'admin';
     }
 }
