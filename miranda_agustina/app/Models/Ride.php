@@ -36,7 +36,7 @@ class Ride extends Model
     }
 
     /**
-     * las reservas que se le hicieron a esa cabalgata. 
+     * las reservas que se le hicieron a esa cabalgata 
      */
     public function bookings(): HasMany
     {
