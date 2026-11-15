@@ -34,6 +34,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('blog.index')}}">Blog</a>
                             </li>   
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('rides.index')}}">Cabalgatas</a>
+                            </li>
                         </ul>
 
                         <ul class="navbar-nav align-items-lg-center">
