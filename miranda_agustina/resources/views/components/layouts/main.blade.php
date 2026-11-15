@@ -30,7 +30,10 @@
                         <ul class="navbar-nav me-auto">
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('home')}}">Inicio</a>
-                            </li>    
+                            </li> 
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('blog.index')}}">Blog</a>
+                            </li>   
                         </ul>
 
                         <ul class="navbar-nav align-items-lg-center">

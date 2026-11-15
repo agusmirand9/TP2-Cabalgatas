@@ -26,6 +26,28 @@
 
     <section>
         <h2>Novedades</h2>
-        <p>//noticias del blog.</p>
+
+        @if($posts->isEmpty())
+            <p>Todavía no hay novedades publicadas.</p>
+        @else
+            <ul class="list-unstyled">
+                @foreach($posts as $post)
+                    <li class="mb-3">
+                        <article>
+                            <h3>
+                                <a href="{{ route('blog.show', ['slug' => $post->slug]) }}">{{ $post->title }}</a>
+                            </h3>
+                            <p>
+                                <time datetime="{{ $post->published_at->toDateString() }}">{{ $post->published_at->format('d/m/Y') }}</time>
+                            </p>
+                            <p>{{ $post->excerpt }}</p>
+                        </article>
+                    </li>
+                @endforeach
+            </ul>
+
+            <p><a href="{{ route('blog.index') }}">Ver todas las novedades</a></p>
+        @endif
     </section>
+    
 </x-layouts.main>
