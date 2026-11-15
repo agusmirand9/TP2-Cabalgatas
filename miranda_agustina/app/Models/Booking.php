@@ -18,11 +18,11 @@ class Booking extends Model
      */
 
     protected function casts(): array
-    [
-        return[
+    {
+        return [
             'ride_date' => 'date',
         ];
-    ]
+    }
 
     /**
      * precio total de la reserva, se guarda en la base x100, y se lee /100

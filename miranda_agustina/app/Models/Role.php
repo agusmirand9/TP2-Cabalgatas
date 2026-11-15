@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+
 /**
  * un rol de un usuario
  */
@@ -14,6 +16,19 @@ class Role extends Model
     /**
      * usuarios que tienen ese rol
      */
+
+    /**
+     * nombre del rol español en pantalla
+     */
+    public function label(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value, array $attributes) => match ($attributes['name']) {
+                'admin' => 'Administrador',
+                default => 'Usuario',
+            },
+        );
+    }
 
     public function users(): HasMany
     {
