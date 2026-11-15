@@ -8,7 +8,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\RideController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Middleware\EnsureIsAdmin;
-
+use App\Http\Controllers\Admin\UserController;
 
 Route::get('/', [HomeController::class, 'index'])
     ->name('home');
@@ -51,4 +51,17 @@ Route::middleware(['auth', EnsureIsAdmin::class])
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])
             ->name('dashboard');
+    });
+
+Route::middleware(['auth', EnsureIsAdmin::class])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])
+            ->name('dashboard');
+
+        Route::get('/usuarios', [UserController::class, 'index'])
+            ->name('users.index');
+        Route::get('/usuarios/{user}', [UserController::class, 'show'])
+            ->name('users.show');
     });
