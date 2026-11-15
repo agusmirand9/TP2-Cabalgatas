@@ -6,6 +6,8 @@ use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\RideController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Middleware\EnsureIsAdmin;
 
 
 Route::get('/', [HomeController::class, 'index'])
@@ -42,3 +44,11 @@ Route::post('/registrarse', [RegisterController::class, 'process'])
 Route::post('/cerrar-sesion', [AuthController::class, 'logout'])
     ->name('auth.logout')
     ->middleware('auth');
+
+Route::middleware(['auth', EnsureIsAdmin::class])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])
+            ->name('dashboard');
+    });
