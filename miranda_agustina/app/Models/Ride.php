@@ -36,6 +36,30 @@ class Ride extends Model
     }
 
     /**
+     * duracion de la cabalgata en formato de horas
+     */
+    public function durationLabel(): Attribute
+    {
+        return Attribute::make(
+            get: function (mixed $value, array $attributes): string {
+                $hours = intdiv($attributes['duration_minutes'], 60);
+                $minutes = $attributes['duration_minutes'] % 60;
+                $parts = [];
+
+                if ($hours > 0) {
+                    $parts[] = $hours === 1 ? '1 hora' : $hours . ' horas';
+                }
+
+                if ($minutes > 0) {
+                    $parts[] = $minutes . ' min';
+                }
+
+                return implode(' y ', $parts);
+            },
+        );
+    }
+
+    /**
      * las reservas que se le hicieron a esa cabalgata 
      */
     public function bookings(): HasMany
