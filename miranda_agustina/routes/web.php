@@ -1,14 +1,15 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegisterController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BlogController;
 use App\Http\Controllers\RideController;
-use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Middleware\EnsureIsAdmin;
-use App\Http\Controllers\Admin\UserController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])
     ->name('home');
@@ -51,17 +52,19 @@ Route::middleware(['auth', EnsureIsAdmin::class])
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])
             ->name('dashboard');
-    });
-
-Route::middleware(['auth', EnsureIsAdmin::class])
-    ->prefix('admin')
-    ->name('admin.')
-    ->group(function () {
-        Route::get('/', [DashboardController::class, 'index'])
-            ->name('dashboard');
 
         Route::get('/usuarios', [UserController::class, 'index'])
             ->name('users.index');
+
         Route::get('/usuarios/{user}', [UserController::class, 'show'])
             ->name('users.show');
+
+        Route::get('/novedades', [PostController::class, 'index'])
+            ->name('posts.index');
+            
+        Route::get('/novedades/crear', [PostController::class, 'create'])
+            ->name('posts.create');
+
+        Route::post('/novedades', [PostController::class, 'store'])
+            ->name('posts.store');
     });

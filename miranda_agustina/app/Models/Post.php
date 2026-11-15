@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 
 /**
  * representa una entrada del blog
@@ -25,7 +26,7 @@ class Post extends Model
     /**
      * conversion automatica del tipo para los atributos
      */
-    protected function Casts(): array
+    protected function casts(): array
     {
         return [ 
             'published_at' => 'date',
@@ -37,7 +38,7 @@ class Post extends Model
      */
     public function author(): BelongsTo
     {
-        return $this->BelongsTo(User::class, 'user_fk', 'id');
+        return $this->belongsTo(User::class, 'user_fk', 'id');
     }
 
     /**
@@ -48,6 +49,25 @@ class Post extends Model
     {
         $query->where('published_at', '<=', today());
     }
+
+    /**
+     * genera un slug unico tomando el titulo, agregando un numero si ya existe
+     */
+
+    public static function uniqueSlugFor(string $title): string
+    {
+        $base = Str::slug($title) ?: 'novedad';
+        $slug = $base;
+        $counter = 2;
+
+        while (static::where('slug', $slug)->exists()) {
+            $slug = $base . '-' . $counter;
+            $counter++;
+        }
+
+        return $slug;
+    }
+
 
 
 
