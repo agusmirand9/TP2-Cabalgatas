@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * representa una entrada del blog
@@ -38,5 +39,16 @@ class Post extends Model
     {
         return $this->BelongsTo(User::class, 'user_fk', 'id');
     }
+
+    /**
+     * filtra las entradas ya publicadas por fecha de hoy
+     */
+
+    public function scopePublished(Builder $query) : void
+    {
+        $query->where('published_at', '<=', today())
+    }
+
+
 
 }

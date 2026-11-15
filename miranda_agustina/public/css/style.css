@@ -56,3 +56,11 @@ h1 {
 .footer p {
     margin-bottom: 0;
 }
+
+main section + section {
+    margin-top: 3rem;
+}
+
+.navbar {
+    padding-block: 1rem;
+}

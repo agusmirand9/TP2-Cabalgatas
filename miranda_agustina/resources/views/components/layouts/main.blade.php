@@ -62,7 +62,7 @@
             </nav>
         </header>
 
-        <main class="container py-3" id="main-content">
+        <main class="container py-5" id="main-content">
             @if(session()->has('feedback.message'))
                 <div class="alert alert-success" role="status">{{ session('feedback.message') }}</div>
             @endif
