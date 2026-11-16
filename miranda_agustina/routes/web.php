@@ -67,4 +67,16 @@ Route::middleware(['auth', EnsureIsAdmin::class])
 
         Route::post('/novedades', [PostController::class, 'store'])
             ->name('posts.store');
+
+                Route::get('/novedades/{post}/editar', [PostController::class, 'edit'])
+            ->name('posts.edit');
+
+        Route::post('/novedades/{post}/editar', [PostController::class, 'update'])
+            ->name('posts.update');
+        
+        Route::get('/novedades/{post}/eliminar', [PostController::class, 'delete'])
+            ->name('posts.delete');
+
+        Route::post('/novedades/{post}/eliminar', [PostController::class, 'destroy'])
+            ->name('posts.destroy');
     });
