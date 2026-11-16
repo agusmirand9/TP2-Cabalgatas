@@ -149,5 +149,6 @@
     <p class="mt-3">
         <a href="{{ route('admin.posts.index') }}">Cancelar y volver al listado</a>
     </p>
-    
+
+
 </x-layouts.main>

@@ -7,10 +7,10 @@
     @if($rides->isEmpty())
         <p>Todavía no hay cabalgatas disponibles.</p>
     @else
-        <ul class="list-unstyled">
+        <ul class="card-grid list-unstyled">
             @foreach($rides as $ride)
-                <li class="mb-4">
-                    <article>
+                <li>
+                    <article class="card-item">
                         @if($ride->cover)
                             <img
                                 src="{{ asset('storage/' . $ride->cover) }}"

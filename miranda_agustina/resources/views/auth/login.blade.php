@@ -59,4 +59,6 @@
     </form>
 
     <p class="mt-3">¿Todavía no tenés cuenta? <a href="{{ route('auth.register.form') }}">Registrate</a>.</p>
+
+
 </x-layouts.main>

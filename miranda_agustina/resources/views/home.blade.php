@@ -12,10 +12,10 @@
         @if($rides->isEmpty())
             <p>Todavía no hay cabalgatas disponibles.</p>
         @else
-            <ul class="list-unstyled">
+            <ul class="card-grid list-unstyled">
                 @foreach($rides as $ride)
-                    <li class="mb-3">
-                        <article>
+                    <li>
+                        <article class="card-item">
                             <h3>
                                 <a href="{{ route('rides.show', ['ride' => $ride]) }}">{{ $ride->name }}</a>
                             </h3>
@@ -38,10 +38,10 @@
         @if($posts->isEmpty())
             <p>Todavía no hay novedades publicadas.</p>
         @else
-            <ul class="list-unstyled">
+            <ul class="card-grid list-unstyled">
                 @foreach($posts as $post)
-                    <li class="mb-3">
-                        <article>
+                    <li>
+                        <article class="card-item">
                             <h3>
                                 <a href="{{ route('blog.show', ['slug' => $post->slug]) }}">{{ $post->title }}</a>
                             </h3>

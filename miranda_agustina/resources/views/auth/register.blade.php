@@ -94,4 +94,6 @@
     </form>
 
     <p class="mt-3">¿Ya tenés cuenta? <a href="{{ route('auth.login.form') }}">Ingresá</a>.</p>
+
+
 </x-layouts.main>

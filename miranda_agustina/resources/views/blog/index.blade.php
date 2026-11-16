@@ -7,10 +7,10 @@
     @if($posts->isEmpty())
         <p>Todavía no hay novedades publicadas.</p>
     @else
-        <ul class="list-unstyled">
+        <ul class="card-grid list-unstyled">
             @foreach($posts as $post)
-                <li class="mb-4">
-                    <article>
+                <li>
+                    <article class="card-item">
                         @if($post->cover)
                             <img
                                 src="{{ asset('storage/' . $post->cover) }}"
@@ -37,5 +37,5 @@
 
         {{ $posts->links() }}
     @endif
-    
+
 </x-layouts.main>
