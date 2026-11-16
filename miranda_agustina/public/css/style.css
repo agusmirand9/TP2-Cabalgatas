@@ -83,7 +83,6 @@ main section {
 main p {
     max-width: 65ch;
 }
-
 /* Páginas con formulario: todo el contenido en una columna angosta y centrada */
 main:has(> form) > * {
     max-width: 32rem;
